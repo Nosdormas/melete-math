@@ -1,0 +1,4 @@
+# MANIFEST.sha256 lists the SHA-256 of every file as committed. Text files keep LF line
+# endings on every platform, so the sums also match a checkout on Windows.
+* text=auto eol=lf
+*.xz binary

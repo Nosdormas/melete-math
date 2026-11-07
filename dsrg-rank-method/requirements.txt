@@ -1,0 +1,5 @@
+# Versions used for the recorded runs (Python 3.12.3).
+numpy==2.4.6
+# Checks that call a SAT solver run under "$SOLVER_PYTHON": an interpreter with python-sat
+# (our runs: python-sat 1.9.dev17 with numpy 2.5.4 in a separate environment).
+python-sat==1.9.dev17

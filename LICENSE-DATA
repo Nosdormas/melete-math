@@ -1,0 +1,15 @@
+The program code of this repository (*.py, *.lean and the Lean project files lakefile.toml,
+lean-toolchain, lake-manifest.json) is released under the MIT License in the file LICENSE.
+
+Everything else - the data files (files under directories named data/ and certificates/), the
+inventories (certificates.json, requirements.txt), the README files and the metadata files - is
+released under the Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+You may share and adapt this material for any purpose, provided that you give appropriate credit
+(cite the repository as described in CITATION.cff), provide a link to the license and indicate
+if changes were made.
+
+The snapshot dsrg-rank-method/data/brouwer-dsrg-v110.txt lists parameter sets and their status as published in the
+table of directed strongly regular graphs maintained by A. E. Brouwer and S. A. Hobart
+(https://homepages.cwi.nl/~aeb/math/dsrg/dsrg.html); credit for that table belongs to its authors.

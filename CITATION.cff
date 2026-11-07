@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use these programs or data, please cite them as below."
+type: dataset
+title: "melete-math: machine checks for nonexistence results on directed strongly regular graphs"
+authors:
+  - family-names: Ivanov
+    given-names: Iurii
+    orcid: "https://orcid.org/0009-0009-4137-6788"
+    affiliation: "Independent researcher"
+version: "1.0.0"
+date-released: "2026-11-07"
+repository-code: "https://github.com/Nosdormas/melete-math"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - directed strongly regular graphs
+  - nonexistence
+  - rank
+  - SAT certificates
+  - Lean
+abstract: >-
+  Programs, graph catalogues, SAT certificates and Lean modules that check every
+  computational step of the proofs of nonexistence of directed strongly regular
+  graphs with ten parameter sets of the Hobart-Brouwer table.

@@ -1,0 +1,28 @@
+{
+  "about": "Unsatisfiability certificates of the proofs. 'stored' files are in certificates/ of this directory and are listed in MANIFEST.sha256 of the repository; 'recreated' certificates are too large to store, and the given command, run from this directory, writes them again with the SHA-256 listed in the entry or in its sha256_file.",
+  "stored": [
+    {
+      "path": "certificates/free-28-6-3-2-1.lrat.xz",
+      "sha256": "09784360a2d1646d938d9e68d3db79252f61f6dcde4055521689415004bc83a4",
+      "what": "LRAT proof (xz -9e) that the formula of the free-vertex case of (28, 6, 3, 2, 1) is unsatisfiable",
+      "formula_sha256": "4b59a3ff8959ed54f9a0a5ae2ca02ef07d41eb126fb759610f6732b9daf04ce3",
+      "unpacked_sha256": "7771e5ec55282d9da62937af8687057900f28c8a9cef03cc166c4e7abda0ed21",
+      "steps": 525,
+      "check": "\"$SOLVER_PYTHON\" -X utf8 checks/dsrg28_certificate.py check",
+      "recreate": "\"$SOLVER_PYTHON\" -X utf8 checks/dsrg28_certificate.py make certificates"
+    }
+  ],
+  "recreated": [
+    {
+      "what": "(48, 9, 5, 0, 2), all 707 pivot orbits of both shapes: for the 541 orbits whose formula reaches the solver, the CNF, the DRAT proof by CaDiCaL 1.9.5 and the LRAT file by drat-trim, checked by drat-trim and the LRAT checker; the formulas of the other 166 orbits contain the empty clause",
+      "command": "\"$SOLVER_PYTHON\" -X utf8 checks/search48_second.py search --kind KIND --solver cadical --part I/12 --proof-dir DIR --proof-orbits all --discard-proofs --drat-timeout 900",
+      "runs": "24 runs: KIND = C8 and 2C4, I = 0, ..., 11; 18895 s (5 h 15 min) on one thread in total. --discard-proofs removes the files of each orbit after its check; without it they stay in DIR",
+      "sha256_file": "data/search48-second-proofs-sha256.json"
+    },
+    {
+      "what": "(28, 6, 3, 2, 1): the formula of the free-vertex case and of the case without free vertices with their DRAT proofs; written to a temporary folder, checked by drat-trim and the LRAT checker, then removed",
+      "command": "\"$SOLVER_PYTHON\" -X utf8 checks/dsrg28_check.py",
+      "sha256": {"free-vertex formula": "4b59a3ff8959ed54f9a0a5ae2ca02ef07d41eb126fb759610f6732b9daf04ce3"}
+    }
+  ]
+}
