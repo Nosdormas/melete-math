@@ -1,5 +1,15 @@
-import DsrgRank.Spectrum.Statement
-import DsrgRank.Spectrum.Cert
+module
+
+public import DsrgRank.Spectrum.Statement
+public import DsrgRank.Spectrum.Cert
+
+/-!
+Connects the spectral lemma to checkable certificates: a factorisation of D(A) through R terms
+bounds its rank above by R, a nonzero minor of size R bounds it below by R, and a refutation
+certificate shows that a doubled rank bound fails.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

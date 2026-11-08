@@ -1,4 +1,15 @@
-import DsrgRank.Spectrum.Defs
+module
+
+public import DsrgRank.Spectrum.Defs
+
+/-!
+Defines the certificate predicates of the spectral lemma: FactorCert, a factorisation of D(A)
+through R terms with nonzero integer denominator; MinorCert, a nonzero minor certificate;
+SpectralLemmaCert; and SpectralLemmaHalfRefutation, a minor certificate together with the failure of
+the doubled rank bound.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

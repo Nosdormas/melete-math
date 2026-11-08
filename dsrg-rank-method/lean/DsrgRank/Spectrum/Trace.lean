@@ -1,6 +1,15 @@
-import Mathlib.Analysis.Matrix.Spectrum
-import Mathlib.Algebra.Order.Chebyshev
-import DsrgRank.Spectrum.RankLemmas
+module
+
+public import Mathlib.Analysis.Matrix.Spectrum
+public import Mathlib.Algebra.Order.Chebyshev
+public import DsrgRank.Spectrum.RankLemmas
+
+/-!
+Proves that for a Hermitian matrix G, (tr G)^2 is at most rank G times tr(G^2), and applies this to
+D D^T to get trace_bound, the trace inequality of the spectral lemma.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

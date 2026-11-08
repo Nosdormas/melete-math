@@ -1,10 +1,19 @@
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Analysis.Real.Sqrt
-import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
-import Mathlib.Tactic.Module
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.FieldSimp
-import DsrgRank.Spectrum.Bridge
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Analysis.Real.Sqrt
+public import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+public import Mathlib.Tactic.Module
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.FieldSimp
+public import DsrgRank.Spectrum.Bridge
+
+/-!
+Defines the real matrices used by the spectral lemma: the all-ones matrix Jr, the projection Pi1 = I
+- Jr/n, and Mp = 2A - (lambda - mu)I - betaR Jr, with their product and trace identities.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

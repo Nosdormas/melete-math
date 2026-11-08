@@ -1,4 +1,14 @@
-import DsrgRank.DSRG
+module
+
+public import DsrgRank.DSRG
+
+/-!
+Gives explicit adjacency matrices of DSRGs with parameters (6, 2, 1, 0, 1), (6, 3, 2, 1, 2), (8, 3,
+2, 1, 1), (10, 4, 2, 1, 2) and (18, 4, 3, 0, 1), proves that each satisfies IsDSRG, and proves that
+a modified matrix for each of them fails the conditions.
+-/
+
+@[expose] public section
 
 namespace DsrgRank.Graphs.Small
 

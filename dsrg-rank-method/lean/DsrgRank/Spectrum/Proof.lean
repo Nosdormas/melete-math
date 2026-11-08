@@ -1,9 +1,20 @@
-import Mathlib.Basic.Real.Basic
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Linarith
-import DsrgRank.Spectrum.Statement
-import DsrgRank.Spectrum.Trace
-import DsrgRank.Spectrum.Struct
+module
+
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Linarith
+public import DsrgRank.Spectrum.Statement
+public import DsrgRank.Spectrum.Trace
+public import DsrgRank.Spectrum.Struct
+
+/-!
+Proves the spectral lemma for a DSRG with 0 < t < k < n - 1: the rank of D(A) satisfies the
+RankBound inequality, and (2 n (k - t))^2 is at most rank(D) times traceDDt2. disc_identity and
+rankBound_iff_two_min reduce the rank bound to R at most 2 min(f, g), and SpectralLemma_full adds
+the structure facts.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

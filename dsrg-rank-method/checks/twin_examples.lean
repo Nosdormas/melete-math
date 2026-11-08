@@ -1,6 +1,17 @@
-import DsrgRank.TwinClassesMuOne
-import DsrgRank.TwinClasses
-import DsrgRank.Graphs.Small
+module
+
+public import DsrgRank.TwinClassesMuOne
+public import DsrgRank.TwinClasses
+public import DsrgRank.Graphs.Small
+
+/-!
+Example file that checks twin-class facts on explicit matrices of known DSRGs with parameters (8, 3,
+2, 1, 1), (15, 4, 2, 1, 1), (16, 7, 5, 4, 2) and (45, 8, 4, 3, 1), and states as examples the
+exclusions of (66, 10, 5, 4, 1), (91, 12, 6, 5, 1), (40, 9, 6, 5, 1), (96, 15, 10, 9, 1) and (80,
+19, 13, 12, 2).
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

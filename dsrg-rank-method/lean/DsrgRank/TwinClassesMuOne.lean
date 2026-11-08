@@ -1,5 +1,16 @@
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import DsrgRank.Spectral
+module
+
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import DsrgRank.Spectral
+
+/-!
+For mu = 1 and t = lambda + 1, proves structure facts for the row and column twin classes and their
+blocks. From them it excludes the parameter sets (40, 9, 6, 5, 1), (96, 15, 10, 9, 1), (66, 10, 5,
+4, 1) and (91, 12, 6, 5, 1), and shows that no DSRG with k = 2 lambda + 2 and lambda at least 4
+exists.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

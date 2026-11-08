@@ -1,4 +1,14 @@
-import DsrgRank.LeftKernel
+module
+
+public import DsrgRank.LeftKernel
+
+/-!
+For lambda = 1 and t = 2 mu, proves counting identities for functions that are constant on the out-
+arcs of a vertex (ArcConst) and the resulting bounds on their profiles, which the left-kernel lemmas
+use.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

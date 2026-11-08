@@ -1,4 +1,15 @@
-import DsrgRank.TwinClassesMuOne
+module
+
+public import DsrgRank.TwinClassesMuOne
+
+/-!
+For mu = 1 and t = lambda + 1, proves facts about the frame of a vertex: the sizes of its blocks,
+the emptiness of a block exactly for row twins of the vertex, and independence and freeness lemmas.
+VFrame_28 shows that a DSRG with parameters (28, 6, 3, 2, 1) has a vertex whose row or column twin
+class is a single vertex.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

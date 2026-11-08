@@ -1,0 +1,104 @@
+version: v0.4
+
+project:
+  name: "Nonexistence of directed strongly regular graphs by rank arguments"
+  description: >-
+    Lean 4 and Mathlib proofs that no directed strongly regular graph exists for 28 parameter
+    sets (v, k, t, λ, μ). A directed strongly regular graph is a 0-1 matrix A with zero diagonal,
+    all row and column sums equal to k and A² = tI + λA + μ(J − I − A). Nine of the parameter sets
+    are those of the paper below: (50, 11, 7, 0, 3), (68, 13, 7, 0, 3), (100, 16, 7, 0, 3),
+    (108, 19, 9, 0, 4), (55, 16, 12, 1, 6), (66, 10, 5, 4, 1), (91, 12, 6, 5, 1),
+    (96, 15, 10, 9, 1) and (28, 6, 3, 2, 1); the tenth set of the paper, (48, 9, 5, 0, 2), is not
+    formalized. The same lemmas exclude eight further sets, and a formalized complement lemma
+    excludes eleven complementary sets. The proofs compare the rank of A − θI, for a root θ of
+    the quadratic x² − (λ − μ)x − (t − μ), with a submatrix of A prescribed at one vertex. For
+    (28, 6, 3, 2, 1) one case is a SAT refutation whose LRAT certificate the Lean kernel checks
+    with decide +kernel. The theorems use only propext, Classical.choice and Quot.sound.
+  authors:
+    - "Iurii Ivanov"
+  responsible_maintainers:
+    - "Iurii Ivanov"
+  license: "MIT"
+
+classification:
+  arxiv: [math.CO]
+  msc2020: [05C20, 05E30]
+
+sources:
+  - title: "Nonexistence of DSRGs with ten parameter sets: the rank of A − θI versus a submatrix prescribed at a vertex"
+    authors:
+      - "Iurii Ivanov"
+    type: paper
+    relationship: formalizes
+    note: >-
+      Manuscript, not yet published. The Lean library proves the nonexistence theorems
+      of the paper for nine of its ten parameter sets.
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Formalized: the nonexistence of directed strongly regular graphs for the 28 parameter sets
+    named in comparator.json, with all lemmas they rest on. Not formalized: the parameter set
+    (48, 9, 5, 0, 2) of the paper, whose proof rests on an exhaustive computer search; the
+    library proves its rank facts but not its nonexistence.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+
+automation:
+  methods:
+    - method: agent
+      tool_setup: >-
+        AI agents wrote the Lean proofs, the checking programs and the module documentation under
+        the direction of the author, who chose the problem and directed the work. Every proof is checked
+        by the Lean kernel; the statements in Challenge.lean were written from the definitions of
+        the library and compared with them by Comparator.
+  notes: >-
+    The LRAT certificate of the SAT case of (28, 6, 3, 2, 1) was produced by the SAT solver
+    CaDiCaL and is checked in Lean by the kernel, not by a compiled checker.
+
+fidelity:
+  divergences: >-
+    Graphs are encoded as integer matrices Nat → Nat → Int whose entries with both indices below
+    v matter; IsDSRG states the defining conditions entrywise with finite sums. The paper states
+    the same conditions with matrices over the integers.
+
+review:
+  status: "agent-reviewed"
+  notes: >-
+    The proofs and the statements were reviewed by independent AI agents. The statements of
+    Challenge.lean repeat the library definitions word for word, and Comparator checks that each
+    theorem of Solution.lean states the same.
+
+alignment:
+  namespace: "DsrgRank"
+  statements:
+    - source: "Nonexistence for (50, 11, 7, 0, 3), (68, 13, 7, 0, 3), (100, 16, 7, 0, 3), (108, 19, 9, 0, 4)"
+      lean: "DsrgRank.ClosedNbhd_no_50_11_7_0_3, DsrgRank.ClosedNbhd_no_68_13_7_0_3, DsrgRank.ClosedNbhd_no_100_16_7_0_3, DsrgRank.ClosedNbhd_no_108_19_9_0_4"
+      module: "DsrgRank.ClosedNeighbourhood"
+      status: "formalized"
+    - source: "Nonexistence for (55, 16, 12, 1, 6)"
+      lean: "DsrgRank.LeftKer_no_55_16_12_1_6"
+      module: "DsrgRank.LeftKernelComponents"
+      status: "formalized"
+    - source: "Nonexistence for (66, 10, 5, 4, 1), (91, 12, 6, 5, 1), (96, 15, 10, 9, 1)"
+      lean: "DsrgRank.TwinMuOne_no_66_10_5_4_1, DsrgRank.TwinMuOne_no_91_12_6_5_1, DsrgRank.TwinMuOne_no_96_15_10_9_1"
+      module: "DsrgRank.TwinClassesMuOne"
+      status: "formalized"
+    - source: "Nonexistence for (28, 6, 3, 2, 1)"
+      lean: "DsrgRank.Case28_no_28_6_3_2_1"
+      module: "DsrgRank.Case28"
+      status: "formalized"
+    - source: "Nonexistence for (48, 9, 5, 0, 2)"
+      lean: ""
+      module: ""
+      status: "not formalized"
+      note: "The library proves the rank facts used in the paper (DsrgRank.SchurComplement, DsrgRank.VertexRecovery) but not the exhaustive search that completes the proof."
+
+acknowledgements: >-
+  The kernel-mode LRAT checker builds on lrat-catcher v0.2.1 by Stefan Szeider (MIT licence),
+  kept with its notice in DsrgRank/Sat/LRATCatcher/.

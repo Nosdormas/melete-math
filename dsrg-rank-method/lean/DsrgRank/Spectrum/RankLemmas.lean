@@ -1,5 +1,15 @@
-import Mathlib.LinearAlgebra.Trace
-import DsrgRank.Spectrum.Disc
+module
+
+public import Mathlib.LinearAlgebra.Trace
+public import DsrgRank.Spectrum.Disc
+
+/-!
+Proves rank lemmas for the spectral lemma: facts about block matrices, equality of the ranks of
+rational and real forms, the trace of an idempotent equals its rank, and rank_D_parts, which gives
+the multiplicities f and g of the two roots with their equations.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

@@ -1,5 +1,14 @@
 
 
+module
+
+/-!
+Defines the finite sum sumBelow n f = f 0 + ... + f (n - 1) over the integers and proves its basic
+facts: congruence, additivity, linearity, and bounds for sums of 0-1 values.
+-/
+
+@[expose] public section
+
 namespace DsrgRank
 
 /-- `sumBelow n f = f 0 + … + f (n − 1)`. -/

@@ -1,4 +1,14 @@
-import DsrgRank.Sum
+module
+
+public import DsrgRank.Sum
+
+/-!
+Defines IsDSRG n A k t lambda mu for a 0-1 matrix A of size n: zero diagonal, all row and column
+sums equal to k, and A squared equal to t times the identity plus lambda times A plus mu times (J -
+I - A). It also defines the Kronecker delta and ofBitmasks, which builds a matrix from row bitmasks.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

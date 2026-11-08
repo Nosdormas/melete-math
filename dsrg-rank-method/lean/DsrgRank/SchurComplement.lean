@@ -1,4 +1,14 @@
-import DsrgRank.ClosedNeighbourhood
+module
+
+public import DsrgRank.ClosedNeighbourhood
+
+/-!
+For lambda = 0 defines the vector yhat of the Schur complement at a vertex and proves its kernel and
+rank facts. For the parameter set (48, 9, 5, 0, 2) it proves that the eigenspace of -3 has dimension
+14 and that A - I has rank 15; these facts do not by themselves exclude that set.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

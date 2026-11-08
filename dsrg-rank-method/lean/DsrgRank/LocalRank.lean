@@ -1,6 +1,17 @@
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import Mathlib.LinearAlgebra.Dimension.RankNullity
-import DsrgRank.KernelFrame
+module
+
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import Mathlib.LinearAlgebra.Dimension.RankNullity
+public import DsrgRank.KernelFrame
+
+/-!
+Defines the eigenspace of A for theta and proves local rank facts at a vertex and its out-
+neighbours: eigenvectors sum to zero when theta differs from k, dimension bounds at out-neighbours
+and at far vertices, and, for a root pair under 0 < t < k < n - 1, the identity dim E(theta) + 1 +
+dim E(theta') = n.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

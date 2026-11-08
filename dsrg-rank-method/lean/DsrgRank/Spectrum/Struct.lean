@@ -1,4 +1,14 @@
-import DsrgRank.Spectrum.RankLemmas
+module
+
+public import DsrgRank.Spectrum.RankLemmas
+
+/-!
+Proves the structure part of the spectral lemma (SpectralLemma_struct): the image and kernel of D(A)
+are invariant under A and its transpose, the image splits into the eigenspaces of the two roots of
+equal dimension, and A and its transpose agree on the kernel of D(A).
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

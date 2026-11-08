@@ -1,21 +1,23 @@
 # Machine checks: the rank of A − θI at a vertex
 
-This directory holds the machine steps of the proofs that no directed strongly regular graph (DSRG) exists with the ten parameter sets below. Every proof bounds the rank of A − θI, where θ is an eigenvalue of the adjacency matrix A, on a few rows around one vertex. A machine step is one of three things: a theorem accepted by the Lean kernel, a run of a program whose expected output is listed in the tables below, or a SAT proof checked by drat-trim and by our own LRAT checker. The steps that the paper proves by hand are not repeated here.
+This directory holds the machine steps of the proofs that no directed strongly regular graph (DSRG) exists with the ten parameter sets below. Every proof bounds the rank of A − θI, where θ is an eigenvalue of the adjacency matrix A, on a few rows around one vertex. A machine step is one of three things: a theorem accepted by the Lean kernel, a run of a program whose expected output is listed in the tables below, or a SAT proof checked by drat-trim and by our own LRAT checker; the one stored SAT proof, for (28, 6, 3, 2, 1), is checked by the Lean kernel as well. The steps that the paper proves by hand are not repeated here.
 
 ## The ten parameter sets
 
-A parameter set (v, k, t, λ, μ) names v vertices, in- and out-degree k, t two-cycles at every vertex, and λ or μ paths of length two from x to y when x → y is an arc or when it is not. The complement of a DSRG is a DSRG, so each result also excludes the complementary set; `lean/DsrgRank/Complement.lean` proves this step in Lean.
+A parameter set (v, k, t, λ, μ) names v vertices, in- and out-degree k, t two-cycles at every vertex, and λ or μ paths of length two from x to y when x → y is an arc or when it is not. The complement of a DSRG is a DSRG, so each result also excludes the complementary set; `lean/DsrgRank/Complement.lean` proves this step in Lean, and the library states the complement of every set below except (48, 9, 5, 0, 2) as a theorem of its own (`compl_no_…`).
+
+Nine of the ten sets are excluded in Lean: the theorem `∀ A : Mat, ¬ IsDSRG v A k t λ μ` of each of them is listed in the column "Lean". For (48, 9, 5, 0, 2) Lean proves the rank facts at a vertex, but not the final search, so its nonexistence rests on the programs.
 
 | Parameter set | Argument | Lean | Programs |
 |---|---|---|---|
-| (50, 11, 7, 0, 3), (68, 13, 7, 0, 3), (100, 16, 7, 0, 3), (108, 19, 9, 0, 4) | for λ = 0, the submatrix of A − θI on the closed out-neighbourhood of a vertex is nonsingular, so 2k − t ≤ m′ | `ClosedNeighbourhood.lean`: `ClosedNbhd_no_50_11_7_0_3` and three more | cross-check on known graphs and on the table: "Sets with λ = 0" |
-| (48, 9, 5, 0, 2) | the Schur complement of that submatrix has rank 1; the graph is then fixed by one pivot vertex, and a finite search finds none | `SchurComplement.lean`, `VertexRecovery.lean` | "The set (48, 9, 5, 0, 2)": structure at a vertex, first and second search programs |
-| (55, 16, 12, 1, 6) | for λ = 1, t = 2μ, the left kernel of A − I on a vertex and its out-neighbours; a search over profiles leaves none | `LeftKernel.lean`, `ProfileBound.lean` | "The set (55, 16, 12, 1, 6)": two programs |
-| (96, 15, 10, 9, 1) | for t = λ + 1, the rows of A + I fall into classes of equal rows, and their sizes contradict the parameters | `TwinClasses.lean`, `TwinClassesMuOne.lean`: `TwinMuOne_no_96_15_10_9_1` | "Sets with μ = 1" |
-| (66, 10, 5, 4, 1), (91, 12, 6, 5, 1) | for μ = 1, t = λ + 1 and k = 2λ + 2, every vertex has a row twin and a column twin once λ ≥ 3, and for λ ≥ 4 this is impossible | `TwinClassesMuOne.lean`: `TwinMuOne_no_66_10_5_4_1`, `TwinMuOne_no_91_12_6_5_1` | "Sets with μ = 1" |
-| (28, 6, 3, 2, 1) | the same family with λ = 2: a vertex without a row twin is excluded by a SAT proof, the other cases in Lean | `VertexFrame.lean` | "The set (28, 6, 3, 2, 1)": two programs and a stored LRAT proof |
+| (50, 11, 7, 0, 3), (68, 13, 7, 0, 3), (100, 16, 7, 0, 3), (108, 19, 9, 0, 4) | for λ = 0, the submatrix of A − θI on the closed out-neighbourhood of a vertex is nonsingular, so 2k − t ≤ m′ | `ClosedNeighbourhood.lean`: `ClosedNbhd_no_50_11_7_0_3` and three more; `Complement.lean`: `compl_no_50_38_34_29_28` and three more, the complements | cross-check on known graphs and on the table: "Sets with λ = 0" |
+| (48, 9, 5, 0, 2) | the Schur complement of that submatrix has rank 1; the graph is then fixed by one pivot vertex, and a finite search finds none | `SchurComplement.lean`, `VertexRecovery.lean`: rank facts only, no nonexistence theorem | "The set (48, 9, 5, 0, 2)": structure at a vertex, first and second search programs |
+| (55, 16, 12, 1, 6) | for λ = 1, t = 2μ, the left kernel of A − I on a vertex and its out-neighbours; the arcs inside the out-neighbourhood split it into at most k/2 classes, and these classes cannot carry a left kernel of dimension at least 7 | `LeftKernel.lean`, `ProfileBound.lean`, `LeftKernelComponents.lean`: `LeftKer_no_55_16_12_1_6` and the complement `compl_no_55_38_34_27_24` | "The set (55, 16, 12, 1, 6)": two programs, a search over profiles |
+| (96, 15, 10, 9, 1) | for t = λ + 1, the rows of A + I fall into classes of equal rows, and their sizes contradict the parameters | `TwinClasses.lean`, `TwinClassesMuOne.lean`: `TwinMuOne_no_96_15_10_9_1`; `Complement.lean`: `compl_no_96_80_75_65_75` | "Sets with μ = 1" |
+| (66, 10, 5, 4, 1), (91, 12, 6, 5, 1) | for μ = 1, t = λ + 1 and k = 2λ + 2, every vertex has a row twin and a column twin once λ ≥ 3, and for λ ≥ 4 this is impossible | `TwinClassesMuOne.lean`: `TwinMuOne_no_66_10_5_4_1`, `TwinMuOne_no_91_12_6_5_1`; `Complement.lean`: their complements | "Sets with μ = 1" |
+| (28, 6, 3, 2, 1) | the same family with λ = 2: a vertex has no row twin or no column twin; all cases are proved in Lean, and for a vertex without a row twin the Lean kernel checks the stored LRAT proof of a SAT formula | `VertexFrame.lean`; `Case28.lean`: `Case28_no_28_6_3_2_1` and the complement `Case28_no_28_21_18_15_18`; the modules `Sat/` | "The set (28, 6, 3, 2, 1)": two programs and a stored LRAT proof |
 
-The Lean modules also prove the same bound for six sets with λ = 0 that the table already marks as nonexistent, and for (40, 9, 6, 5, 1) and (80, 19, 13, 12, 2). The correspondence between the statements of the paper and the Lean theorems is given in the paper.
+The Lean modules also prove the same bound for six sets with λ = 0 that the table already marks as nonexistent, and the nonexistence for (40, 9, 6, 5, 1) and (80, 19, 13, 12, 2) with their complements. In all, the library has 37 modules under `lean/DsrgRank/` with 507 theorem declarations, and 28 of the theorems exclude a parameter set: they are the `theorem_names` of `lean/comparator.json` (section "Lean: the Palomar files and Comparator"). The correspondence between the statements of the paper and the Lean theorems is given in the paper.
 
 ## Layout
 
@@ -29,12 +31,13 @@ The Lean modules also prove the same bound for six sets with λ = 0 that the tab
 | `data/search48-second-order-*.json` | the order of pivot orbits of the second program for (48, 9, 5, 0, 2); the program rebuilds it if the file is missing |
 | `data/search48-second-proofs-sha256.json` | the SHA-256 of the formula, the DRAT proof and the LRAT proof of every pivot orbit of (48, 9, 5, 0, 2), or "empty clause" for an orbit whose formula contains it |
 | `data/left-kernel-check-output.txt` | output of `checks/left_kernel_check.py`, read by `checks/profiles_second.py` for comparison |
-| `lean/` | Lake project `dsrg_rank` with the library `DsrgRank`; Lean v4.35.0, Mathlib v4.35.0 |
+| `lean/` | Lake project `dsrg_rank` with the library `DsrgRank`; Lean v4.35.0, Mathlib v4.35.0. Every file is a module of Lean's module system and opens with a short description of what it proves. `lean/DsrgRank/Sat/LRATCatcher/` holds two modules of lrat-catcher v0.2.1 by Stefan Szeider, under the MIT license, with their own copyright notice and license in the file header, ported to Lean v4.35.0 |
+| `lean/Challenge.lean`, `lean/Solution.lean`, `lean/comparator.json`, `lean/formalization.yaml` | the files of the Palomar registry of formal proofs: the statements with Mathlib alone, their proofs, the theorems to compare and the metadata (section "Lean: the Palomar files and Comparator") |
 | `certificates/`, `certificates.json` | the stored LRAT proof and the SHA-256 of the proofs that are recreated by a command |
 
 ## Requirements and setup
 
-The commands run from this directory. They need Python 3.12 with numpy; the commands that start with `"$SOLVER_PYTHON"` need an interpreter with python-sat, which provides CaDiCaL 1.9.5 and Minicard. `requirements.txt` lists the versions of our runs. The checks of DRAT proofs need drat-trim (github.com/marijnheule/drat-trim), whose path goes in `DRAT_TRIM`. Lean is installed with elan; the first command below downloads the compiled Mathlib, the second builds the modules of the project.
+The commands run from this directory. They need Python 3.12 with numpy; the commands that start with `"$SOLVER_PYTHON"` need an interpreter with python-sat, which provides CaDiCaL 1.9.5 and Minicard. `requirements.txt` lists the versions of our runs. The checks of DRAT proofs need drat-trim (github.com/marijnheule/drat-trim), whose path goes in `DRAT_TRIM`. Lean is installed with elan; the first command below downloads the compiled Mathlib, the second builds the modules of the project together with `Challenge.lean` and `Solution.lean`.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -68,19 +71,35 @@ lake -d lean env lean checks/complement_mutant.lean
 
 | Command | Exit | Last line | Time, s |
 |---|---|---|---|
-| `lean_axioms.py` | 0 | `{"modules": {"DsrgRank.Spectral":…13}, "nonstandard": {}}` | 21 |
-| `--mutate extra-axiom` | 1 | `{"modules": {"DsrgRank.Spectral":…["mutant_false"]}}` | 22 |
-| `lean_axioms.py DsrgRank.Spectrum.Disc` | 0 | `{"modules": {"DsrgRank.Spectrum.Disc": 16}, "nonstandard": {}}` | 15 |
-| `closed_nbhd_examples.lean` | 0 | `'DsrgRank.ClosedNbhdExamples.ClosedN…Classical.choice, Quot.sound]` | 30 |
-| `closed_nbhd_lean_mutants.py` | 0 | `unexpected outcomes: 0` | 142 |
+| `lean_axioms.py` | 0 | `{"modules": {"DsrgRank.Spectral":…26}, "nonstandard": {}}` | 29 |
+| `--mutate extra-axiom` | 1 | `{"modules": {"DsrgRank.Spectral":…["mutant_false"]}}` | 18 |
+| `lean_axioms.py DsrgRank.Spectrum.Disc` | 0 | `{"modules": {"DsrgRank.Spectrum.Disc": 16}, "nonstandard": {}}` | 16 |
+| `closed_nbhd_examples.lean` | 0 | `'DsrgRank.ClosedNbhdExamples.ClosedN…Classical.choice, Quot.sound]` | 19 |
+| `closed_nbhd_lean_mutants.py` | 0 | `unexpected outcomes: 0` | 178 |
 | `twin_examples.lean` | 0 | `'DsrgRank.TwinExamples.TwinMuOne_ran…Classical.choice, Quot.sound]` | 45 |
-| `twin_lean_mutants.py`, part 1 | 0 | `uncaught mutants and red bases: 0` | 73 |
-| part 2 | 0 | `uncaught mutants and red bases: 0` | 94 |
-| part 3 | 0 | `uncaught mutants and red bases: 0` | 118 |
-| part 4 | 0 | `uncaught mutants and red bases: 0` | 66 |
+| `twin_lean_mutants.py`, part 1 | 0 | `uncaught mutants and red bases: 0` | 89 |
+| part 2 | 0 | `uncaught mutants and red bases: 0` | 113 |
+| part 3 | 0 | `uncaught mutants and red bases: 0` | 103 |
+| part 4 | 0 | `uncaught mutants and red bases: 0` | 52 |
 | `complement_mutant.lean` | 1 | `  hno ?m.279 h2` | 26 |
 
-`lean_axioms.py` lists the axioms of every theorem of the twelve main modules of the project and fails on any axiom other than `propext`, `Classical.choice` and `Quot.sound`; its mutant adds a theorem proved by a new axiom. Given a module name, it does the same for that module; the third command covers `disc_pos`, the positivity of the discriminant, which lies outside the main modules. The two example files apply the theorems to explicit matrices, so the hypotheses of the theorems can be met. The mutant programs copy a module, change one statement, for example a bound by one or a strict inequality, and require that Lean rejects the copy; `complement_mutant.lean` is `Complement.lean` with one parameter of the complement changed by one.
+`lean_axioms.py` lists the axioms of every theorem of 23 modules of the library — the eleven modules of the rank arguments, `Complement`, `Case28`, `LeftKernelComponents` and the nine modules under `Sat/` — and fails on any axiom other than `propext`, `Classical.choice` and `Quot.sound`; its mutant adds a theorem proved by a new axiom. Given a module name, it does the same for that module; the third command covers `disc_pos`, the positivity of the discriminant, which lies outside these modules. The two example files apply the theorems to explicit matrices, so the hypotheses of the theorems can be met. The mutant programs copy a module, change one statement, for example a bound by one or a strict inequality, and require that Lean rejects the copy; `complement_mutant.lean` is `Complement.lean` with one parameter of the complement changed by one.
+
+### Lean: the Palomar files and Comparator
+
+The project `lean/` is laid out for the Palomar registry of formal proofs, with `dsrg-rank-method/lean` as the selected project. `Challenge.lean` imports Mathlib only and states the 28 nonexistence theorems of the library with `sorry`; it repeats the definitions `sumBelow`, `delta`, `IsDSRG` and `Mat` of `DsrgRank.Sum`, `DsrgRank.DSRG` and `DsrgRank.Parts` word for word, each with a docstring. `Solution.lean` imports the library, which brings the same theorems with their proofs. `comparator.json` names the 28 theorems and permits the axioms `propext`, `Classical.choice` and `Quot.sound`; `formalization.yaml` is the metadata of the registry. The default build target of `lean/` includes both files, so `lake -d lean build` reports one `declaration uses 'sorry'` warning for each theorem of `Challenge.lean`.
+
+`lake comparator`, part of Lake since Lean v4.35.0, builds and exports both modules and checks that every named theorem of the solution states exactly what the challenge states, depends on the permitted axioms only, and is accepted by the Lean kernel. It runs from `lean/` and needs the sandbox `bwrap` (bubblewrap) on Linux:
+
+```sh
+cd lean && lake comparator
+```
+
+| Command | Exit | Last line | Time, s |
+|---|---|---|---|
+| `lake comparator` | 0 | `Your solution is okay!` | 205 |
+
+Our run was on Windows, where bubblewrap does not exist, with the sandbox switched off by `--inadvisably-no-sandbox`; the modules were already built, so the time is mostly the export and the kernel check. The 28 theorems are exactly the theorems of the library whose statement is `∀ A : Mat, ¬ IsDSRG v A k t λ μ`.
 
 ### The rank principle on known graphs
 
@@ -341,14 +360,26 @@ python -X utf8 checks/vertex_frame_check.py --mutate pairs-geq --quiet
 
 `dsrg28_check.py` writes the formulas for a vertex without a row twin and for the case without such vertices, checks them on known graphs of the same family, solves them with CaDiCaL and passes the DRAT proofs to drat-trim and to our LRAT checker. `dsrg28_certificate.py check` rebuilds the formula of the first case, compares its SHA-256 with the stored one and checks the stored LRAT proof `certificates/free-28-6-3-2-1.lrat.xz` step by step; it needs neither a solver nor drat-trim. `dsrg28_second.py` is a second program for the same case, written separately and sharing no code with `dsrg28_check.py`: `frames` enumerates the 10⁶ labelled subgraphs on N⁺[x] and keeps the 55 allowed by the equation B² = 3B + J, `control` solves its formulas on graphs of (18, 5, 3, 2, 1) and (54, 8, 3, 2, 1), and `proof` solves both formulas for (28, 6, 3, 2, 1) with checked DRAT proofs. On (54, 8, 3, 2, 1) one formula without the graph is not solved within the time limit, which the last line counts; the control only needs the formulas with the graph to be satisfiable. `vertex_frame_check.py` checks the frame of a vertex for μ = 1 and t = λ + 1, the statement of the Lean module `VertexFrame.lean`, on known graphs, and counts the subgraphs on N⁺[x] for (28, 6, 3, 2, 1).
 
+The formula of a vertex without a row twin has 131 518 variables and 300 889 clauses and SHA-256 `4b59a3ff8959ed54f9a0a5ae2ca02ef07d41eb126fb759610f6732b9daf04ce3`; CaDiCaL proves it unsatisfiable in less than a second, and drat-trim turns its DRAT proof into the stored LRAT proof of 525 steps. The same proof is also checked by the Lean kernel. `lean/DsrgRank/Sat/Case28Free.lean` holds the 1 627 clauses of the formula that the proof refers to and its 525 steps, and its header gives the SHA-256 of the formula and of the unpacked proof, `7771e5ec55282d9da62937af8687057900f28c8a9cef03cc166c4e7abda0ed21`, as in `certificates.json`. Its theorem `formula_unsat` is proved by `decide +kernel`, with no compiled code in the trusted base, and `Case28.lean` proves in Lean that each of these clauses is a clause of the formula of a vertex without a row twin, so this case of (28, 6, 3, 2, 1) does not rest on the programs.
+
+```sh
+lake -d lean build DsrgRank.Sat.Case28Free
+```
+
+| Command | Exit | Last line | Time, s |
+|---|---|---|---|
+| `lake -d lean build DsrgRank.Sat.Case28Free` | 0 | `Build completed successfully (…)` | 66 |
+
+The time is the build of this module alone, with the modules it imports already built; it is the heaviest module of the library, and the Lean process takes up to 5.4 GB of memory on it.
+
 ## What the checks do not cover
 
-The paper marks every step of its proofs as proved in Lean, by a program or by hand. The steps proved by hand — for example the determinant formula on N[x], the passage from the Lean statements on (48, 9, 5, 0, 2) to the form used in the text, and the count c = 8 for (55, 16, 12, 1, 6) — have no machine check here. The search for (48, 9, 5, 0, 2) rests on two programs of different design without common code that agree. Both encode the reduction of the paper's Proposition 5.4, which is proved by hand, so each guards the other's implementation but not the reduction; only the second program has a control at Schur complement rank 1, on the Petersen graph. The unsatisfiability of the second program's formulas is checked for all 707 orbits, by an accepted proof or by the empty clause in the formula, but that these formulas encode the conditions of Proposition 5.4 is not proved: the construction of the formula and the controls support it. The table snapshot is an input: it records the parameter sets and statuses of the published page of 6 November 2026, and the checks do not compare these statuses with the papers behind them.
+The paper marks every step of its proofs as proved in Lean, by a program or by hand. The steps proved by hand — for example the determinant formula on N[x], and the passage from the Lean statements on (48, 9, 5, 0, 2) to the form used in the text — have no machine check here. The nonexistence for (55, 16, 12, 1, 6), with the count of the classes of out-neighbours, is proved in Lean (`LeftKernelComponents.lean`) along a route that differs in detail from the text. The search for (48, 9, 5, 0, 2) rests on two programs of different design without common code that agree. Both encode the reduction of the paper's Proposition 5.4, which is proved by hand, so each guards the other's implementation but not the reduction; only the second program has a control at Schur complement rank 1, on the Petersen graph. The unsatisfiability of the second program's formulas is checked for all 707 orbits, by an accepted proof or by the empty clause in the formula, but that these formulas encode the conditions of Proposition 5.4 is not proved: the construction of the formula and the controls support it. The table snapshot is an input: it records the parameter sets and statuses of the published page of 6 November 2026, and the checks do not compare these statuses with the papers behind them.
 
 ## Certificates
 
-`certificates.json` lists every proof certificate. The LRAT proof for the vertex without a row twin in (28, 6, 3, 2, 1) is stored in `certificates/` (525 steps, compressed with xz) and is checked by `dsrg28_certificate.py check` above; `dsrg28_certificate.py make DIR` writes it again. The formulas, DRAT proofs and LRAT proofs of the second program for (48, 9, 5, 0, 2) are too large to store. The command `"$SOLVER_PYTHON" -X utf8 checks/search48_second.py search --kind KIND --solver cadical --part I/12 --proof-dir DIR --proof-orbits all --discard-proofs --drat-timeout 900`, run for KIND = C8 and 2C4 and for I = 0, …, 11, writes them again and checks them. For every orbit whose formula has no empty clause, CaDiCaL writes a DRAT proof, drat-trim checks it and writes an LRAT proof, and the LRAT checker checks that; the line of the orbit gives the SHA-256 of the three files, and the run ends with `violations: 0` only if every orbit is UNSAT and every proof is accepted. `data/search48-second-proofs-sha256.json` lists these SHA-256 for the 541 orbits with proofs and marks the other 166 as "empty clause". In our run the 24 parts took 18 895 s on one thread in total, 12 065 s for C8 and 6830 s for 2C4; one orbit took at most 285 s, the solver at most 114 s and drat-trim at most 92 s. `--discard-proofs` removes the files of each orbit after its check, so the disk holds the files of one orbit at a time; without it they stay in DIR. CaDiCaL writes the same files on a repeated run: nine orbits proved in an earlier, separate run have the same SHA-256.
+`certificates.json` lists every proof certificate. The LRAT proof for the vertex without a row twin in (28, 6, 3, 2, 1) is stored in `certificates/` (525 steps, compressed with xz) and is checked by `dsrg28_certificate.py check` above and, with the same SHA-256, by the Lean kernel in `lean/DsrgRank/Sat/Case28Free.lean`; `dsrg28_certificate.py make DIR` writes it again. The formulas, DRAT proofs and LRAT proofs of the second program for (48, 9, 5, 0, 2) are too large to store. The command `"$SOLVER_PYTHON" -X utf8 checks/search48_second.py search --kind KIND --solver cadical --part I/12 --proof-dir DIR --proof-orbits all --discard-proofs --drat-timeout 900`, run for KIND = C8 and 2C4 and for I = 0, …, 11, writes them again and checks them. For every orbit whose formula has no empty clause, CaDiCaL writes a DRAT proof, drat-trim checks it and writes an LRAT proof, and the LRAT checker checks that; the line of the orbit gives the SHA-256 of the three files, and the run ends with `violations: 0` only if every orbit is UNSAT and every proof is accepted. `data/search48-second-proofs-sha256.json` lists these SHA-256 for the 541 orbits with proofs and marks the other 166 as "empty clause". In our run the 24 parts took 18 895 s on one thread in total, 12 065 s for C8 and 6830 s for 2C4; one orbit took at most 285 s, the solver at most 114 s and drat-trim at most 92 s. `--discard-proofs` removes the files of each orbit after its check, so the disk holds the files of one orbit at a time; without it they stay in DIR. CaDiCaL writes the same files on a repeated run: nine orbits proved in an earlier, separate run have the same SHA-256.
 
 ## License and citation
 
-The code is under the MIT license (`LICENSE` at the root of the repository); the data and the texts are under CC BY 4.0 (`LICENSE-DATA`). The snapshot of the Hobart–Brouwer table reproduces parameter sets and statuses from the public page of that table. To cite these files, use `CITATION.cff`.
+The code is under the MIT license (`LICENSE` at the root of the repository); the data and the texts are under CC BY 4.0 (`LICENSE-DATA`). The two modules in `lean/DsrgRank/Sat/LRATCatcher/` are third-party code, lrat-catcher v0.2.1 by Stefan Szeider, also under the MIT license, with their own copyright notice in the file header. The snapshot of the Hobart–Brouwer table reproduces parameter sets and statuses from the public page of that table. To cite these files, use `CITATION.cff`.

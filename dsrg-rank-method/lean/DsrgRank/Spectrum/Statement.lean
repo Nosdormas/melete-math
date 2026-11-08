@@ -1,6 +1,16 @@
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Analysis.Real.Sqrt
-import DsrgRank.Spectrum.Defs
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Analysis.Real.Sqrt
+public import DsrgRank.Spectrum.Defs
+
+/-!
+Defines the statements of the spectral lemma: the rational and real forms toQ and toR, the image and
+kernel of D(A), the eigenspaces eigA, the roots rR and sR, and the predicates SpectralLemmaStruct,
+SpectralLemmaStmt and SpectralLemmaFull.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

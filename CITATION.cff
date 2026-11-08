@@ -7,7 +7,7 @@ authors:
     given-names: Iurii
     orcid: "https://orcid.org/0009-0009-4137-6788"
     affiliation: "Independent researcher"
-version: "1.0.0"
+version: "1.1.0"
 date-released: "2026-11-07"
 repository-code: "https://github.com/Nosdormas/melete-math"
 license:
@@ -22,4 +22,8 @@ keywords:
 abstract: >-
   Programs, graph catalogues, SAT certificates and Lean modules that check every
   computational step of the proofs of nonexistence of directed strongly regular
-  graphs with ten parameter sets of the Hobart-Brouwer table.
+  graphs with ten parameter sets of the Hobart-Brouwer table. The Lean project
+  proves the nonexistence for nine of the ten sets, for further sets and for
+  complements, 28 theorems on the standard axioms only, with the Lean kernel
+  checking the one stored SAT certificate; it carries the files of the Palomar
+  registry of formal proofs.

@@ -1,5 +1,15 @@
-import DsrgRank.ClosedNeighbourhood
-import DsrgRank.Graphs.Small
+module
+
+public import DsrgRank.ClosedNeighbourhood
+public import DsrgRank.Graphs.Small
+
+/-!
+Example file that applies the lambda = 0 closed-neighbourhood bound to explicit matrices of known
+DSRGs with parameters (6, 2, 1, 0, 1), (18, 4, 3, 0, 1) and (16, 5, 5, 0, 2), so that the hypotheses
+of these theorems are shown to be satisfiable.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

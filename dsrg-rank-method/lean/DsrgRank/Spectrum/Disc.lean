@@ -1,4 +1,14 @@
-import DsrgRank.Spectrum.Mat
+module
+
+public import DsrgRank.Spectrum.Mat
+
+/-!
+Defines the real matrices S_r and D_r of the discriminant decomposition, proves their transposition,
+trace and product identities, and proves disc_pos: under 0 < t < k < n - 1 the discriminant is
+positive.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

@@ -1,5 +1,15 @@
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import DsrgRank.Spectral
+module
+
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import DsrgRank.Spectral
+
+/-!
+For a DSRG and a root pair theta, theta' (IsRootPair), defines the matrix K = n(A - theta I) - (k -
+theta)J and proves its products with A and J, its null-space and eigenvector properties, and its
+rank when the roots differ and k is not the other root.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

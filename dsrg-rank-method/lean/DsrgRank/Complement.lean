@@ -1,5 +1,16 @@
-import DsrgRank.TwinClasses
-import DsrgRank.VertexFrame
+module
+
+public import DsrgRank.ClosedNeighbourhood
+public import DsrgRank.TwinClasses
+public import DsrgRank.VertexFrame
+
+/-!
+Proves that the complement of a directed strongly regular graph with parameters (n, k, t, lambda,
+mu) is one with complementary parameters, and uses this to exclude the complements of nine parameter
+sets, among them (66, 55, 50, 45, 50) and (40, 30, 27, 21, 27).
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 
@@ -125,6 +136,26 @@ theorem compl_no_96_80_75_65_75 (A : Mat) : ¬ IsDSRG 96 A 80 75 65 75 := by
 
 theorem compl_no_80_60_54_42_54 (A : Mat) : ¬ IsDSRG 80 A 60 54 42 54 := by
   have h := not_isDSRG_compl Twin_no_80_19_13_12_2 A
+  norm_num at h
+  exact h
+
+theorem compl_no_50_38_34_29_28 (A : Mat) : ¬ IsDSRG 50 A 38 34 29 28 := by
+  have h := not_isDSRG_compl ClosedNbhd_no_50_11_7_0_3 A
+  norm_num at h
+  exact h
+
+theorem compl_no_68_54_48_43_42 (A : Mat) : ¬ IsDSRG 68 A 54 48 43 42 := by
+  have h := not_isDSRG_compl ClosedNbhd_no_68_13_7_0_3 A
+  norm_num at h
+  exact h
+
+theorem compl_no_100_83_74_69_68 (A : Mat) : ¬ IsDSRG 100 A 83 74 69 68 := by
+  have h := not_isDSRG_compl ClosedNbhd_no_100_16_7_0_3 A
+  norm_num at h
+  exact h
+
+theorem compl_no_108_88_78_72_70 (A : Mat) : ¬ IsDSRG 108 A 88 78 72 70 := by
+  have h := not_isDSRG_compl ClosedNbhd_no_108_19_9_0_4 A
   norm_num at h
   exact h
 

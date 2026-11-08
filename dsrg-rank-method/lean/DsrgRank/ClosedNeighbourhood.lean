@@ -1,5 +1,16 @@
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import DsrgRank.Spectral
+module
+
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import DsrgRank.Spectral
+
+/-!
+For lambda = 0 proves that the closed neighbourhood of a vertex x, the vertex with its in- and out-
+neighbours, has 2k - t + 1 vertices and that this number is at most the rank of A - theta I. For t =
+2 mu + 1 this gives an inequality that excludes ten parameter sets, among them (50, 11, 7, 0, 3),
+(68, 13, 7, 0, 3), (100, 16, 7, 0, 3) and (108, 19, 9, 0, 4).
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

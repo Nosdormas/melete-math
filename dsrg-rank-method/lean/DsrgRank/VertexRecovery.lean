@@ -1,4 +1,16 @@
-import DsrgRank.SchurComplement
+module
+
+public import DsrgRank.SchurComplement
+
+/-!
+For lambda = 0 gives identities that express the rows of the vertices outside the closed
+neighbourhood of a vertex x (x with its in- and out-neighbours) through the rows inside it, and
+proves that no directed path of length two has all three vertices in that neighbourhood and
+different from x. For the parameter set (48, 9, 5, 0, 2) it shows that every 16 by 16 minor of A - I
+vanishes.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

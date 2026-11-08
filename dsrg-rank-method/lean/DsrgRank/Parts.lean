@@ -1,4 +1,15 @@
-import DsrgRank.DSRG
+module
+
+public import DsrgRank.DSRG
+
+/-!
+Defines the integer matrix vocabulary of the rank argument: products and transposes of matrices
+indexed by naturals, the two-cycle matrix U, the one-way part N and the skew part D = N - N
+transposed, the fixed entries of a partial matrix, and the branch conditions NoCycle3, NoTriangle
+and PathsMutual with their layout cells.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

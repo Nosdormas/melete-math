@@ -1,6 +1,16 @@
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import Mathlib.LinearAlgebra.Dimension.RankNullity
-import DsrgRank.LocalRank
+module
+
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import Mathlib.LinearAlgebra.Dimension.RankNullity
+public import DsrgRank.LocalRank
+
+/-!
+For lambda = 1 and t = 2 mu, defines the left kernel of A - I at a vertex x and its out-
+neighbourhood, proves identities for it and lower bounds on its dimension, and shows that the
+profile space of the parameter set (55, 16, 12, 1, 6) has dimension at least 7 at each vertex.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

@@ -40,6 +40,17 @@ MODULES = [
     "DsrgRank.TwinClasses",
     "DsrgRank.VertexFrame",
     "DsrgRank.Complement",
+    "DsrgRank.Sat.LRATCatcher.Basic",
+    "DsrgRank.Sat.LRATCatcher.Kernel",
+    "DsrgRank.Sat.Subset",
+    "DsrgRank.Sat.TrieCheck",
+    "DsrgRank.Sat.SeqCounter",
+    "DsrgRank.Sat.FreeFormula",
+    "DsrgRank.Sat.FreeLink",
+    "DsrgRank.Sat.FreeRelabel",
+    "DsrgRank.Sat.Case28Free",
+    "DsrgRank.Case28",
+    "DsrgRank.LeftKernelComponents",
 ]
 STANDARD = ("propext", "Classical.choice", "Quot.sound")
 

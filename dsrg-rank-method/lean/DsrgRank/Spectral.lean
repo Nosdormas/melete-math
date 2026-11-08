@@ -1,4 +1,14 @@
-import DsrgRank.Spectrum.Proof
+module
+
+public import DsrgRank.Spectrum.Proof
+
+/-!
+Defines the root pair of a DSRG: theta + theta' = lambda - mu and theta theta' = mu - t. Proves that
+the roots are the numbers rR and sR when the discriminant is positive, the multiplicity equations of
+the eigenvalues, and that every vertex with out-degree k > 0 has an out-arc.
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

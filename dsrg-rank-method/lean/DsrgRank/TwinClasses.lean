@@ -1,4 +1,14 @@
-import DsrgRank.TwinClassesMuOne
+module
+
+public import DsrgRank.TwinClassesMuOne
+
+/-!
+For t = lambda + 1 and any mu, proves facts about row twin classes (vertices with equal rows of A +
+I): the sizes of out- and in-neighbourhoods, and lower and upper bounds on the size of a class
+(Twin_lower, Twin_upper). These bounds exclude the parameter set (80, 19, 13, 12, 2).
+-/
+
+@[expose] public section
 
 set_option autoImplicit false
 

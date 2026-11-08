@@ -1,5 +1,15 @@
-import DsrgRank.TwinClasses
-import DsrgRank.VertexFrame
+module
+
+public import DsrgRank.TwinClasses
+public import DsrgRank.VertexFrame
+
+/-!
+Deliberately broken control: a copy of the complement lemma from Complement.lean in which lambda of
+the complementary parameter set is shifted by one (n - 2k + lambda + 1), so this file must fail to
+compile.
+-/
+
+@[expose] public section
 
 namespace DsrgRank
 

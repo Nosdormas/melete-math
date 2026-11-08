@@ -1,8 +1,16 @@
 name = "dsrg_rank"
-defaultTargets = ["DsrgRank"]
+defaultTargets = ["DsrgRank", "Challenge", "Solution"]
 
 [[lean_lib]]
 name = "DsrgRank"
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
 
 [[require]]
 name = "mathlib"
