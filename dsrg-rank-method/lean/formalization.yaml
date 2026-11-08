@@ -22,7 +22,7 @@ project:
 
 classification:
   arxiv: [math.CO]
-  msc2020: [05C20, 05E30]
+  msc2020: ["05C20", "05E30"]  # quoted: YAML 1.2 reads 05E30 as a number
 
 sources:
   - title: "Nonexistence of DSRGs with ten parameter sets: the rank of A − θI versus a submatrix prescribed at a vertex"
