@@ -1,0 +1,27 @@
+# Checks that MANIFEST.sha256 describes the repository exactly: every listed file has the listed
+# SHA-256, and every tracked file except the manifest itself is listed. Runs on every push, so a
+# change that skipped the manifest shows up at once. The checkout action is pinned to a commit SHA.
+name: Manifest
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manifest:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Every listed file has its SHA-256
+        run: sha256sum --check --strict --quiet MANIFEST.sha256
+      - name: Every tracked file is listed
+        run: |
+          git -c core.quotePath=false ls-files | grep -vxF MANIFEST.sha256 | LC_ALL=C sort > "$RUNNER_TEMP/tracked.txt"
+          cut -c67- MANIFEST.sha256 | LC_ALL=C sort > "$RUNNER_TEMP/listed.txt"
+          diff -u "$RUNNER_TEMP/listed.txt" "$RUNNER_TEMP/tracked.txt"
