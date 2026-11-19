@@ -10,6 +10,8 @@ The README of a directory lists its requirements, every command with its expecte
 
 The Lean project `dsrg-rank-method/lean` proves the nonexistence for nine of the ten parameter sets of its paper, for further sets excluded by the same lemmas, and for their complements: 28 theorems in all, on the axioms `propext`, `Classical.choice` and `Quot.sound` only. Every Lean file of the repository uses Lean's module system, and the project carries the files of the Palomar registry of formal proofs — `Challenge.lean`, `Solution.lean`, `comparator.json` and `formalization.yaml` — which `lake comparator` checks; see the README of the directory.
 
+The paper is posted as the Hexagon preprint hexagon:2611.00230v1, https://hexagonmath.org/2611.00230v1. The Lean project is registered in the Palomar registry of formal proofs as PALOMAR-2026-11-13-000004, version 1, at commit `55b78b56c3e56874ccf46b90855640b11b961a4b`: https://palomar-registry.org/entry?id=PALOMAR-2026-11-13-000004&version=1.
+
 ## Integrity
 
 `MANIFEST.sha256` lists the SHA-256 of every file of the repository, one line per file in the format of `sha256sum`, so a copy can be checked with
